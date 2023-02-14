@@ -192,7 +192,7 @@ public:
             // If the token percent is over 0 then it overrides the count value.
             if (PVPCorpseLootTokenPercent > 0)
             {
-                VictimLootTokenStealCount = (VictimLootTokenCount * PVPCorpseLootTokenPercent) / 100;
+                VictimLootTokenStealCount = (VictimLootTokenCount * PVPCorpseLootTokenPercent) / 1000;
             }
             else
             {
@@ -244,7 +244,7 @@ public:
 			if (BossMultiplier > 0)
 			{
 				// Reward based on creature level
-				const int BountyAmount = ((CreatureLevel * BossMultiplier) * 100);
+				const int BountyAmount = ((CreatureLevel * BossMultiplier) * 1);
 
 				if (CreatureType == KILLTYPE_WORLDBOSS)
 				{
@@ -338,7 +338,7 @@ public:
             int rewardBreakdown[3];
             rewardBreakdown[0] = reward / 10000;
             reward = reward - rewardBreakdown[0] * 10000;
-            rewardBreakdown[1] = reward / 100;
+            rewardBreakdown[1] = reward / 1000;
             rewardBreakdown[2] = reward - (rewardBreakdown[1] * 100);
 
             rewardVal = BuildRewardString(&rewardBreakdown[0]);
