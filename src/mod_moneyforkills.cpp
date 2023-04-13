@@ -107,6 +107,7 @@ static constexpr const char* MFKPVPCorpseLootToken = "MFK.PVP.CorpseLootToken";
 static constexpr const char* MFKPVPCorpseLootTokenCount = "MFK.PVP.CorpseLootTokenCount";
 static constexpr const char* MFKPVPCorpseLootTokenPercent = "MFK.PVP.CorpseLootTokenPercent";
 static constexpr const char* MFKPVPCorpseLevelRange = "MFK.PVP.CorpseLootLevelRange";
+static constexpr const char* MFKPVPStealInBattlegrounds = "MFK.PVP.StealInBattlegrounds";
 static constexpr const char* MFKBountyKillMult = "MFK.Bounty.Kill.Multiplier";
 static constexpr const char* MFKPVPKillMult = "MFK.PVP.Kill.Multiplier";
 static constexpr const char* MFKBountyKillDBMult = "MFK.Bounty.DungeonBoss.Multiplier";
@@ -134,6 +135,15 @@ public:
 		// If enabled...
 		if (sConfigMgr->GetOption<bool>(MFKEnable, true))
 		{
+            if (!sConfigMgr->GetOption<bool>(MFKPVPStealInBattlegrounds, false))
+            {
+                if (killer->InBattleground() || killer->InArena() || killer->IsInWintergrasp() ||
+                    victim->InBattleground() || victim->InArena() || victim->IsInWintergrasp())
+                {
+                    return;
+                }
+            }
+
 			const uint32 PVPMultiplier = sConfigMgr->GetOption<uint32>(MFKPVPKillMult, 0);
 			const uint32 VictimLevel = victim->getLevel();
 

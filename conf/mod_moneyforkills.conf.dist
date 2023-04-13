@@ -83,6 +83,11 @@ MFK.PVP.CorpseLootTokenPercent = 5
 # Default: 5
 MFK.PVP.CorpseLootLevelRange = 5
 
+# Allows players to steal from each other in battlegrounds.
+# Setting this to 0 will disable players from stealing in bgs.
+# Default: 0
+MFK.PVP.StealInBattlegrounds = 0
+
 # Creature kills are expressed in Copper and calculated as ((CreatureLevel * Multiplier) / 3)
 # Player kills are expressed in Copper and calculated as ((PlayerLevel * Multiplier) / 3)
 # Boss kills are expressed in Copper and calculated as ((CreatureLevel * Multiplier) * 100)
