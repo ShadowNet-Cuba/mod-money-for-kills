@@ -358,31 +358,31 @@ public:
 		{
         case KILLTYPE_LOOT_TOKEN:
 		case KILLTYPE_LOOT:
-			rewardMsg.append("You loot").append(rewardVal).append(" from the corpse.");
-			victimMsg.append(killer->GetName()).append(" rifles through your corpse and takes").append(rewardVal).append(".");
+			rewardMsg.append("Tú saqueas").append(rewardVal).append(" del cadáver.");
+			victimMsg.append(killer->GetName()).append(" roba de tu cadáver ").append(rewardVal).append(".");
 			ChatHandler(victim->GetSession()).SendSysMessage(victimMsg.c_str());
 			ChatHandler(killer->GetSession()).SendSysMessage(rewardMsg.c_str());
 
             if (sConfigMgr->GetOption<bool>(MFKAnnouncePvPLoot, true))
             {
                 rewardMsg.clear();
-                rewardMsg.append("|cff676767[ |cffFFFF00World |cff676767]|r:|cff4CFF00 ").append(killer->GetName()).append(" |cffFF0000has slain ");
-                rewardMsg.append(victim->GetName()).append(" stealing").append(rewardVal).append(".");
+                rewardMsg.append("|cff676767[ |cffFFFF00World |cff676767]|r:|cff4CFF00 ").append(killer->GetName()).append(" |cffFF0000ha matado a ");
+                rewardMsg.append(victim->GetName()).append(" robando").append(rewardVal).append(".");
                 sWorld->SendServerMessage(SERVER_MSG_STRING, rewardMsg.c_str());
             }
             break;
 		case KILLTYPE_PVP:
 			if (sConfigMgr->GetOption<bool>(MFKAnnouncePvPBounty, true))
 			{
-				rewardMsg.append("|cff676767[ |cffFFFF00World |cff676767]|r:|cff4CFF00 ").append(killer->GetName()).append(" |cffFF0000has slain ");
-				rewardMsg.append(victim->GetName()).append(" earning a bounty of").append(rewardVal).append(".");
+				rewardMsg.append("|cff676767[ |cffFFFF00World |cff676767]|r:|cff4CFF00 ").append(killer->GetName()).append(" |cffFF0000ha matado a ");
+				rewardMsg.append(victim->GetName()).append(" ganando una recompensa de").append(rewardVal).append(".");
 				sWorld->SendServerMessage(SERVER_MSG_STRING, rewardMsg.c_str());
 			}
 			break;
 		case KILLTYPE_DUNGEONBOSS:
 			if (sConfigMgr->GetOption<bool>(MFKAnnounceDungeonBoss, true))
 			{
-				rewardMsg.append("|cffFF8000Your group has defeated |cffFF0000").append(killed->GetName()).append("|cffFF8000.");
+				rewardMsg.append("|cffFF8000Tu grupo ha derrotado a |cffFF0000").append(killed->GetName()).append("|cffFF8000.");
 				ChatHandler(killer->GetSession()).SendSysMessage(rewardMsg.c_str());
 				rewardMsg.clear();
 			}
@@ -391,7 +391,7 @@ public:
 			if (sConfigMgr->GetOption<bool>(MFKAnnounceWorldBoss, true))
 			{
 				rewardMsg.append("|cffFF0000[ |cffFFFF00World |cffFF0000]|r:|cff4CFF00 ").append(killer->GetName());
-				rewardMsg.append("'s|r group triumphed victoriously over |CFF18BE00[").append(killed->GetName()).append("]|r !");
+				rewardMsg.append("'s|r y su grupo mató a |CFF18BE00[").append(killed->GetName()).append("]|r !");
 				sWorld->SendServerMessage(SERVER_MSG_STRING, rewardMsg.c_str());
 				rewardMsg.clear();
 			}
@@ -401,7 +401,7 @@ public:
 		case KILLTYPE_SUICIDE:
 			std::string message = "|cff4CFF00 ";
 			message.append(killer->GetName());
-			message.append(" met an untimely demise!");
+			message.append(" se suicidó, EPD...!");
 
 			if (sConfigMgr->GetOption<bool>(MFKAnnounceWorldSuicide, true))
 				sWorld->SendServerMessage(SERVER_MSG_STRING, message.c_str());
@@ -435,9 +435,9 @@ public:
 		if (kType != KILLTYPE_LOOT && kType != KILLTYPE_LOOT_TOKEN && kType != KILLTYPE_WORLDBOSS && kType != KILLTYPE_SUICIDE)
 		{
 			rewardMsg.clear();
-			rewardMsg.append("You receive a bounty of");
+			rewardMsg.append("Recibes una recompensa de");
 			rewardMsg.append(rewardVal);
-			rewardMsg.append(" for the kill.");
+			rewardMsg.append(" por matarlo.");
 			ChatHandler(killer->GetSession()).SendSysMessage(rewardMsg.c_str());
 		}
 	}
@@ -445,7 +445,7 @@ public:
 	std::string BuildRewardString(int * reward)
 	{
 		std::string rewardMsg = "";
-        std::string currSymbol[3] = { " gold", " silver", " copper" };
+        std::string currSymbol[3] = { " oro", " plata", " cobre" };
 
         for (int i = 0; i < 3; i++)
         {
