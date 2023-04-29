@@ -170,12 +170,12 @@ public:
 			// If enabled...
 			if (PVPMultiplier > 0)
 			{
-				const int BountyAmount = ((VictimLevel * PVPMultiplier) / 3);
+				const int BountyAmount = ((VictimLevel * PVPMultiplier) / 100);
 
 				// Pay the player the additional PVP bounty
 				killer->ModifyMoney(BountyAmount);
 				// Inform the player of the bounty amount
-				Notify(killer, victim, nullptr, KILLTYPE_PVP, BountyAmount);
+				//Notify(killer, victim, nullptr, KILLTYPE_PVP, BountyAmount);
 			}
 
 			// Calculate the amount of gold to give to the victor
@@ -186,11 +186,11 @@ public:
 			if (victim->GetMoney() >= 10000 && VictimLoot > 0)
 			{
 				// Player loots a percentage of the victim's gold
-				killer->ModifyMoney(VictimLoot);
+				killer->ModifyMoney(VictimLoot-100);
 				victim->ModifyMoney(-VictimLoot);
 
 				// Inform the player of the corpse loot
-				Notify(killer, victim, nullptr, KILLTYPE_LOOT, VictimLoot);
+				//Notify(killer, victim, nullptr, KILLTYPE_LOOT, VictimLoot);
 			}
 
             //Calculate the amount of tokens to give to the victor
@@ -258,7 +258,7 @@ public:
 
 				if (CreatureType == KILLTYPE_WORLDBOSS)
 				{
-					Notify(player, nullptr, killed, KILLTYPE_WORLDBOSS, BountyAmount);
+					//Notify(player, nullptr, killed, KILLTYPE_WORLDBOSS, BountyAmount);
 					CreatureBounty(player, killed, KILLTYPE_MOB, BountyAmount);
 				}
 				else
@@ -292,7 +292,7 @@ public:
 			player->ModifyMoney(bounty);
 
 			// Inform the player of the bounty amount
-			Notify(player, nullptr, killed, kType, bounty);
+			//Notify(player, nullptr, killed, kType, bounty);
 		}
 		else
 		{
@@ -314,7 +314,7 @@ public:
 						playerInGroup->ModifyMoney(bounty);
 
 						// Inform the player of the bounty amount
-						Notify(playerInGroup, nullptr, killed, kType, bounty);
+						//Notify(playerInGroup, nullptr, killed, kType, bounty);
 					}
 					else
 					{
@@ -325,7 +325,7 @@ public:
 							playerInGroup->ModifyMoney(bounty);
 
 							// Inform the player of the bounty amount
-							Notify(playerInGroup, nullptr, killed, kType, bounty);
+							//Notify(playerInGroup, nullptr, killed, kType, bounty);
 						}
 					}
 				}
